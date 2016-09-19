@@ -211,8 +211,9 @@ namespace GraphicEditor
         }               
 
         public void Invert()
-        {
-            presenter.invertPict();                        
+        {           
+            presenter.invertPict();
+            Invoke(new Action(() => pictureBox.Enabled = true));
         }
 
         public void Invoke()
@@ -227,6 +228,7 @@ namespace GraphicEditor
 
         private void buttonInvert_Click(object sender, EventArgs e)
         {
+            pictureBox.Enabled = false;
             //creating the background thread and an indication of the method for this thread
             Thread th = new Thread(new ThreadStart(Invert));
             th.Name = "myStream";
